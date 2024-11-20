@@ -1,1 +1,1 @@
-accelerate launch --config_file=./ac_config.yaml train_sft.py 
+accelerate launch --config_file=./ac_config.yaml ../docviz/train_sft.py 

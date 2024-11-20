@@ -51,7 +51,7 @@ if __name__=='__main__':
     # )
     
     training_args = TrainingArguments(
-        output_dir='/home/rag/NIA_submission/aihub-docviz/stage-1',
+        output_dir='./stage-1',
         per_device_train_batch_size=2,
         gradient_accumulation_steps=1,
         num_train_epochs=5,

@@ -12,6 +12,7 @@ import datasets
 
 from data_utils import LlavaNextDataCollator
 
+
 def formatting_func(examples):
     messages = []
     
@@ -28,7 +29,7 @@ def formatting_func(examples):
 
 if __name__=='__main__':   
     model = LlavaNextForConditionalGeneration.from_pretrained(
-        '/home/work/hdd_data/VLM/llava-next/results/doc-stage1/checkpoint-135921',
+        './stage-1',
         attn_implementation='flash_attention_2',
         torch_dtype=torch.bfloat16,
     )
@@ -49,7 +50,7 @@ if __name__=='__main__':
     )
     
     training_args = TrainingArguments(
-        output_dir='/home/work/hdd_data/VLM/llava-next/results/doc-stage2',
+        output_dir='./stage-2',
         per_device_train_batch_size=2,
         gradient_accumulation_steps=2,
         num_train_epochs=5,
