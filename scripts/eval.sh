@@ -1,1 +1,1 @@
-python ../docviz/evaluate_score.py
+python3 ../docviz/evaluate_score.py
