@@ -27,7 +27,6 @@ def formatting_func(examples):
     }
 
 if __name__=='__main__':
-    local_rank=os.environ['LOCAL_RANK']    
     model = LlavaNextForConditionalGeneration.from_pretrained(
         'MLP-VLM/llava-next-bllossom-8b-base',
         attn_implementation='flash_attention_2',
@@ -39,11 +38,6 @@ if __name__=='__main__':
     for n,p in model.named_parameters():
         if 'language_model' in n:
             p.requires_grad=False
-    
-    if local_rank == 0:
-        for n,p in model.named_parameters():
-                if p.requires_grad:
-                    print(n)
     
     dataset = datasets.load_dataset('MLP-VLM/bllossom-vision','aihub-chart-table',split='train')
     # chart = datasets.load_dataset('MLP-VLM/bllossom-vision','aihub-chart',split='train')
@@ -57,8 +51,8 @@ if __name__=='__main__':
     # )
     
     training_args = TrainingArguments(
-        output_dir='/home/work/hdd_data/VLM/llava-next/results/doc-stage1',
-        per_device_train_batch_size=4,
+        output_dir='/home/rag/NIA_submission/aihub-docviz/stage-1',
+        per_device_train_batch_size=2,
         gradient_accumulation_steps=1,
         num_train_epochs=5,
         lr_scheduler_type='cosine',
@@ -74,8 +68,6 @@ if __name__=='__main__':
         label_names=['labels'],
         gradient_checkpointing=True,
         gradient_checkpointing_kwargs={'use_reentrant':False},
-        report_to='wandb',
-        run_name='llava-next-stage1'
     )
     
     collator = LlavaNextDataCollator(processor)

@@ -1,0 +1,1 @@
+accelerate launch --config_file=./ac_config.yaml train_sft.py 
