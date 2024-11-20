@@ -72,6 +72,7 @@ save_path = f'../results/result_vlm_{args.gpu_id}.jsonl'
 
 for idx in tqdm(range(start, end)):
     image = test_dataset[idx]['images']
+    instruction = test_dataset[idx]['messages'][0]['content']
     input_text = processor.tokenizer.apply_chat_template(
         test_dataset[idx]['messages'][:1],
         tokenize=False,
@@ -97,7 +98,7 @@ for idx in tqdm(range(start, end)):
     predict = result[start_idx:].replace('<|start_header_id|>assistant<|end_header_id|>','').replace('<|eot_id|>','').strip()
     
     now = datetime.now()
-    data = {'time': now.strftime('%Y/%m/%d %H:%M:%S'), 'index':idx, 'predict':predict, 'label':label}
+    data = {'time': now.strftime('%Y/%m/%d %H:%M:%S'), 'index':idx,'instruction':instruction, 'predict':predict, 'label':label}
     write_to_file(
         data, 
         save_path,
