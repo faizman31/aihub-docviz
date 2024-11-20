@@ -16,6 +16,9 @@ setup(
         "ipykernel",
         "ipywidgets",
         "jsonlines",
-        "evaluate"
+        "evaluate",
+        "nltk",
+        "absl-py",
+        "rouge_score"
     ],
 )
