@@ -1,0 +1,1 @@
+python ../docviz/evaluate_score.py
