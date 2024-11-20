@@ -9,6 +9,7 @@ setup(
         "torch==2.4.0",
         "datasets",
         "pillow",
+        "deepspeed",
         "peft",
         "bitsandbytes",
         "numpy<2.0.0",
