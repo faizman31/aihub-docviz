@@ -10,6 +10,7 @@ import torch
 import json
 from datasets import load_dataset,concatenate_datasets
 import argparse 
+from datetime import datetime    
 
 def parse_argument():
     parser = argparse.ArgumentParser()
@@ -95,7 +96,8 @@ for idx in tqdm(range(start, end)):
     start_idx = result.find('<|start_header_id|>assistant<|end_header_id|>\n\n')
     predict = result[start_idx:].replace('<|start_header_id|>assistant<|end_header_id|>','').replace('<|eot_id|>','').strip()
     
-    data = {'index':idx, 'predict':predict, 'label':label}
+    now = datetime.now()
+    data = {'time': now.strftime('%Y/%m/%d %H:%M:%S'), 'index':idx, 'predict':predict, 'label':label}
     write_to_file(
         data, 
         save_path,
