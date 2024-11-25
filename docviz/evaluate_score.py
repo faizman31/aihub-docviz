@@ -39,7 +39,7 @@ score_result = {
     'rouge-L':{
                 'f1': rouge_score['rouge1'],
                 'precision': bleu_score['precisions'][2],
-                'recall': calculate_recall(rouge_score['rouge1'],bleu_score['precisions'][2])
+                'recall': calculate_recall(rouge_score['rougeL'],bleu_score['precisions'][2])
               }
 },
 
