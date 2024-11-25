@@ -98,7 +98,8 @@ for idx in tqdm(range(start, end)):
     predict = result[start_idx:].replace('<|start_header_id|>assistant<|end_header_id|>','').replace('<|eot_id|>','').strip()
     
     now = datetime.now()
-    data = {'time': now.strftime('%Y/%m/%d %H:%M:%S'), 'index':idx,'instruction':instruction, 'predict':predict, 'label':label}
+    data_id = test_dataset[idx]['qa_id']
+    data = {'time': now.strftime('%Y/%m/%d %H:%M:%S'), 'index':data_id,'instruction':instruction, 'predict':predict, 'label':label}
     write_to_file(
         data, 
         save_path,
